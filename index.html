@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bank App</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#44574f;
+min-height:100vh;
+padding:20px;
+}
+
+.app{
+max-width:420px;
+margin:auto;
+}
+
+.top-bar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+.welcome small{
+color:#777;
+font-size:13px;
+}
+
+.welcome h1{
+font-size:28px;
+font-weight:700;
+color:linear-gradient(135deg,#015c47,#00a86b);
+margin-top:5px;
+}
+
+.top-icons{
+display:flex;
+gap:12px;
+}
+
+.icon-btn{
+width:48px;
+height:48px;
+border-radius:18px;
+background:linear-gradient(135deg,#015c47,#00a86b);
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 8px 20px rgba(235, 229, 229, 0.06);
+font-size:20px;
+cursor:pointer;
+border:none;
+transition:all .3s ease;
+}
+
+.icon-btn:hover{
+transform:scale(1.05);
+}
+
+.balance-card{
+background:linear-gradient(135deg,#015c47,#00a86b);
+border-radius:35px;
+padding:30px;
+color:rgb(9, 9, 9);
+position:relative;
+overflow:hidden;
+box-shadow:0 20px 40px rgba(0,0,0,0.15);
+margin-bottom:28px;
+}
+
+.balance-card::before{
+content:'';
+position:absolute;
+width:220px;
+height:220px;
+background:rgba(255,255,255,0.08);
+border-radius:50%;
+top:-80px;
+right:-80px;
+}
+
+.balance-card::after{
+content:'';
+position:absolute;
+width:160px;
+height:160px;
+background:rgba(255,255,255,0.06);
+border-radius:50%;
+bottom:-70px;
+left:-50px;
+}
+
+.balance-content{
+position:relative;
+z-index:2;
+}
+
+.balance-title{
+font-size:14px;
+opacity:.8;
+margin-bottom:10px;
+}
+
+.balance-amount{
+font-size:32px;
+font-weight:600;
+margin-bottom:20px;
+}
+
+.balance-bottom{
+display:flex;
+justify-content:space-between;
+font-size:14px;
+opacity:.9;
+}
+
+.quick-actions{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+margin-bottom:30px;
+}
+
+.action-box{
+background:linear-gradient(135deg,#015c47,#00a86b);
+padding:18px 10px;
+border-radius:26px;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,0.05);
+transition:all .3s ease;
+cursor:pointer;
+border:none;
+text-decoration:none;
+display:block;
+}
+
+.action-box:hover{
+transform:translateY(-5px);
+box-shadow:0 15px 35px rgba(0,0,0,0.1);
+}
+
+.action-icon{
+width:55px;
+height:55px;
+margin:auto;
+margin-bottom:12px;
+border-radius:18px;
+background:linear-gradient(135deg,#015c47,#00a86b);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:24px;
+}
+
+.action-title{
+font-size:12px;
+font-weight:600;
+color:#222;
+}
+
+.cards-section{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+margin-bottom:30px;
+}
+
+.mini-card{
+background:linear-gradient(135deg,#015c47,#00a86b);
+padding:22px;
+border-radius:28px;
+box-shadow:0 10px 25px rgba(0,0,0,0.05);
+}
+
+.mini-icon{
+width:55px;
+height:55px;
+border-radius:18px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:25px;
+margin-bottom:18px;
+}
+
+.blue{
+background:#0b0b0b;
+}
+
+.orange{
+background:#0c0c0c;
+}
+
+.mini-card h3{
+font-size:18px;
+margin-bottom:10px;
+}
+
+.mini-card p{
+font-size:13px;
+color:#666;
+line-height:1.5;
+margin-bottom:18px;
+}
+
+.mini-card button{
+width:100%;
+border:none;
+padding:14px;
+border-radius:16px;
+background:#015c47;
+color:white;
+font-weight:600;
+cursor:pointer;
+transition:all .3s ease;
+}
+
+.mini-card button:hover{
+background:#013a2d;
+transform:translateY(-2px);
+}
+
+.transactions{
+background:white;
+border-radius:35px;
+padding:25px;
+box-shadow:0 10px 25px rgba(0,0,0,0.05);
+padding-bottom:110px;
+}
+
+.trans-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+.trans-header h2{
+font-size:22px;
+}
+
+.trans-header a{
+color:#00a86b;
+text-decoration:none;
+font-weight:600;
+cursor:pointer;
+}
+
+.trans-header a:hover{
+text-decoration:underline;
+}
+
+.trans-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding-bottom:18px;
+margin-bottom:18px;
+border-bottom:1px solid #eee;
+}
+
+.trans-left{
+display:flex;
+gap:15px;
+align-items:center;
+}
+
+.trans-status{
+width:55px;
+height:55px;
+border-radius:18px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+color:white;
+font-weight:bold;
+}
+
+.success{
+background:#0abf53;
+}
+
+.failed{
+background:#ff4545;
+}
+
+.trans-info h4{
+font-size:15px;
+margin-bottom:5px;
+}
+
+.trans-info p{
+font-size:12px;
+color:#777;
+}
+
+.trans-amount{
+text-align:right;
+}
+
+.trans-amount h3{
+font-size:15px;
+margin-bottom:5px;
+}
+
+.trans-amount span{
+font-size:12px;
+font-weight:600;
+}
+
+.green{
+color:#0abf53;
+}
+
+.red{
+color:#ff4545;
+}
+
+.bottom-nav{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+width:95%;
+max-width:420px;
+background:white;
+border-radius:35px;
+padding:18px 25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 10px 35px rgba(0,0,0,0.12);
+z-index:100;
+}
+
+.nav-item{
+text-align:center;
+font-size:12px;
+color:#777;
+font-weight:500;
+cursor:pointer;
+text-decoration:none;
+border:none;
+background:none;
+transition:all .3s ease;
+}
+
+.nav-item:hover{
+transform:scale(1.05);
+}
+
+.nav-item div{
+font-size:22px;
+margin-bottom:5px;
+}
+
+.active-nav{
+color:#00a86b;
+}
+
+.center-btn{
+width:70px;
+height:70px;
+border-radius:50%;
+background:#00a86b;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:38px;
+color:white;
+margin-top:-50px;
+border:6px solid #edf1f7;
+box-shadow:0 10px 25px rgba(0,168,107,.4);
+cursor:pointer;
+transition:all .3s ease;
+text-decoration:none;
+}
+
+.center-btn:hover{
+transform:scale(1.1);
+box-shadow:0 15px 35px rgba(0,168,107,.6);
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+<div class="top-bar">
+<div class="welcome">
+<small>Welcome Back</small>
+<h1>Oluwatobi 👋</h1>
+</div>
+
+<div class="top-icons">
+<button class="icon-btn" onclick="goToPage('search.html')">🔍</button>
+<button class="icon-btn" onclick="goToPage('notifications.html')">🔔</button>
+</div>
+</div>
+
+<div class="balance-card">
+<div class="balance-content">
+<div class="balance-title">Available Balance</div>
+<div class="balance-amount">$22,450,000.oo</div>
+
+<div class="balance-bottom">
+<div>
+<p>Account No</p>
+<strong>7033445854</strong>
+</div>
+
+<div>
+<p>Status</p>
+<strong>Premium</strong>
+</div>
+</div>
+</div>
+</div>
+
+<div class="quick-actions">
+<a href="transfer.html" class="action-box">
+<div class="action-icon">💸</div>
+<div class="action-title">Transfer</div>
+</a>
+
+<a href="bills.html" class="action-box">
+<div class="action-icon">📄</div>
+<div class="action-title">Bills</div>
+</a>
+
+<a href="airtime.html" class="action-box">
+<div class="action-icon">📱</div>
+<div class="action-title">Airtime</div>
+</a>
+
+<a href="data.html" class="action-box">
+<div class="action-icon">🌐</div>
+<div class="action-title">Data</div>
+</a>
+
+<a href="electricity.html" class="action-box">
+<div class="action-icon">⚡</div>
+<div class="action-title">Electricity</div>
+</a>
+
+<a href="cable-tv.html" class="action-box">
+<div class="action-icon">📺</div>
+<div class="action-title">Cable TV</div>
+</a>
+
+<a href="savings.html" class="action-box">
+<div class="action-icon">🏦</div>
+<div class="action-title">Savings</div>
+</a>
+
+<a href="cards.html" class="action-box">
+<div class="action-icon">💳</div>
+<div class="action-title">Cards</div>
+</a>
+</div>
+
+<div class="cards-section">
+<div class="mini-card">
+<div class="mini-icon blue">🛡️</div>
+<h3>Virtual Card</h3>
+<p>Secure online shopping and subscriptions.</p>
+<button onclick="goToPage('manage-card.html')">Manage Card</button>
+</div>
+
+<div class="mini-card">
+<div class="mini-icon orange">📈</div>
+<h3>Quick Loan</h3>
+<p>Get instant loans directly into your account.</p>
+<button onclick="goToPage('apply-loan.html')">Apply Now</button>
+</div>
+</div>
+
+<div class="transactions">
+<div class="trans-header">
+<h2>Transactions</h2>
+<a href="all-transactions.html">View All</a>
+</div>
+
+<div class="trans-item">
+<div class="trans-left">
+<div class="trans-status success">✓</div>
+
+<div class="trans-info">
+<h4>Transfer to John Doe</h4>
+<p>Today • 10:45 AM</p>
+</div>
+</div>
+
+<div class="trans-amount">
+<h3>-₦45,000</h3>
+<span class="green">Successful</span>
+</div>
+</div>
+
+<div class="trans-item">
+<div class="trans-left">
+<div class="trans-status failed">✕</div>
+
+<div class="trans-info">
+<h4>Transfer to Sarah Tech</h4>
+<p>Today • 9:12 AM</p>
+</div>
+</div>
+
+<div class="trans-amount">
+<h3>-₦12,000</h3>
+<span class="red">Failed</span>
+</div>
+</div>
+
+<div class="trans-item">
+<div class="trans-left">
+<div class="trans-status success">✓</div>
+
+<div class="trans-info">
+<h4>Airtime Recharge</h4>
+<p>Yesterday • 6:40 PM</p>
+</div>
+</div>
+
+<div class="trans-amount">
+<h3>-₦2,000</h3>
+<span class="green">Successful</span>
+</div>
+</div>
+
+<div class="trans-item">
+<div class="trans-left">
+<div class="trans-status success">✓</div>
+
+<div class="trans-info">
+<h4>Salary Payment</h4>
+<p>Yesterday • 8:00 AM</p>
+</div>
+</div>
+
+<div class="trans-amount">
+<h3 class="green">+₦350,000</h3>
+<span class="green">Successful</span>
+</div>
+</div>
+</div>
+
+<div class="bottom-nav">
+<a href="index.html" class="nav-item active-nav">
+<div>🏠</div>
+Home
+</a>
+
+<a href="analytics.html" class="nav-item">
+<div>📊</div>
+Analytics
+</a>
+
+<a href="create.html" class="center-btn">+</a>
+
+<a href="support.html" class="nav-item">
+<div>💬</div>
+Support
+</a>
+
+<a href="profile.html" class="nav-item">
+<div>👤</div>
+Profile
+</a>
+</div>
+
+</div>
+
+<script>
+function goToPage(page) {
+  window.location.href = page;
+}
+</script>
+
+</body>
+</html>
