@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Bank App</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -27,6 +28,7 @@ max-width:420px;
 margin:auto;
 }
 
+/* TOP BAR */
 .top-bar{
 display:flex;
 justify-content:space-between;
@@ -35,20 +37,15 @@ margin-bottom:25px;
 }
 
 .welcome small{
-color:#777;
+color:#ddd;
 font-size:13px;
 }
 
 .welcome h1{
 font-size:28px;
 font-weight:700;
-color:linear-gradient(135deg,#015c47,#00a86b);
+color:white;
 margin-top:5px;
-}
-
-.top-icons{
-display:flex;
-gap:12px;
 }
 
 .icon-btn{
@@ -59,58 +56,33 @@ background:linear-gradient(135deg,#015c47,#00a86b);
 display:flex;
 align-items:center;
 justify-content:center;
-box-shadow:0 8px 20px rgba(235, 229, 229, 0.06);
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
 font-size:20px;
 cursor:pointer;
 border:none;
-transition:all .3s ease;
+transition:.3s;
+color:white;
 }
 
 .icon-btn:hover{
 transform:scale(1.05);
 }
 
+/* BALANCE CARD */
 .balance-card{
 background:linear-gradient(135deg,#015c47,#00a86b);
 border-radius:35px;
 padding:30px;
-color:rgb(9, 9, 9);
+color:white;
 position:relative;
 overflow:hidden;
-box-shadow:0 20px 40px rgba(0,0,0,0.15);
+box-shadow:0 20px 40px rgba(0,0,0,0.25);
 margin-bottom:28px;
-}
-
-.balance-card::before{
-content:'';
-position:absolute;
-width:220px;
-height:220px;
-background:rgba(255,255,255,0.08);
-border-radius:50%;
-top:-80px;
-right:-80px;
-}
-
-.balance-card::after{
-content:'';
-position:absolute;
-width:160px;
-height:160px;
-background:rgba(255,255,255,0.06);
-border-radius:50%;
-bottom:-70px;
-left:-50px;
-}
-
-.balance-content{
-position:relative;
-z-index:2;
 }
 
 .balance-title{
 font-size:14px;
-opacity:.8;
+opacity:.9;
 margin-bottom:10px;
 }
 
@@ -124,9 +96,10 @@ margin-bottom:20px;
 display:flex;
 justify-content:space-between;
 font-size:14px;
-opacity:.9;
+opacity:.95;
 }
 
+/* QUICK ACTIONS */
 .quick-actions{
 display:grid;
 grid-template-columns:repeat(4,1fr);
@@ -135,21 +108,17 @@ margin-bottom:30px;
 }
 
 .action-box{
-background:linear-gradient(135deg,#015c47,#00a86b);
+background:white;
 padding:18px 10px;
 border-radius:26px;
 text-align:center;
-box-shadow:0 10px 25px rgba(0,0,0,0.05);
-transition:all .3s ease;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+transition:.3s;
 cursor:pointer;
-border:none;
-text-decoration:none;
-display:block;
 }
 
 .action-box:hover{
 transform:translateY(-5px);
-box-shadow:0 15px 35px rgba(0,0,0,0.1);
 }
 
 .action-icon{
@@ -163,6 +132,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 font-size:24px;
+color:white;
 }
 
 .action-title{
@@ -171,73 +141,12 @@ font-weight:600;
 color:#222;
 }
 
-.cards-section{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
-margin-bottom:30px;
-}
-
-.mini-card{
-background:linear-gradient(135deg,#015c47,#00a86b);
-padding:22px;
-border-radius:28px;
-box-shadow:0 10px 25px rgba(0,0,0,0.05);
-}
-
-.mini-icon{
-width:55px;
-height:55px;
-border-radius:18px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:25px;
-margin-bottom:18px;
-}
-
-.blue{
-background:#0b0b0b;
-}
-
-.orange{
-background:#0c0c0c;
-}
-
-.mini-card h3{
-font-size:18px;
-margin-bottom:10px;
-}
-
-.mini-card p{
-font-size:13px;
-color:#666;
-line-height:1.5;
-margin-bottom:18px;
-}
-
-.mini-card button{
-width:100%;
-border:none;
-padding:14px;
-border-radius:16px;
-background:#015c47;
-color:white;
-font-weight:600;
-cursor:pointer;
-transition:all .3s ease;
-}
-
-.mini-card button:hover{
-background:#013a2d;
-transform:translateY(-2px);
-}
-
+/* TRANSACTIONS */
 .transactions{
 background:white;
 border-radius:35px;
 padding:25px;
-box-shadow:0 10px 25px rgba(0,0,0,0.05);
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
 padding-bottom:110px;
 }
 
@@ -254,13 +163,8 @@ font-size:22px;
 
 .trans-header a{
 color:#00a86b;
-text-decoration:none;
 font-weight:600;
 cursor:pointer;
-}
-
-.trans-header a:hover{
-text-decoration:underline;
 }
 
 .trans-item{
@@ -290,27 +194,8 @@ color:white;
 font-weight:bold;
 }
 
-.success{
-background:#0abf53;
-}
-
-.failed{
-background:#ff4545;
-}
-
-.trans-info h4{
-font-size:15px;
-margin-bottom:5px;
-}
-
-.trans-info p{
-font-size:12px;
-color:#777;
-}
-
-.trans-amount{
-text-align:right;
-}
+.success{ background:#0abf53; }
+.failed{ background:#ff4545; }
 
 .trans-amount h3{
 font-size:15px;
@@ -322,14 +207,10 @@ font-size:12px;
 font-weight:600;
 }
 
-.green{
-color:#0abf53;
-}
+.green{ color:#0abf53; }
+.red{ color:#ff4545; }
 
-.red{
-color:#ff4545;
-}
-
+/* BOTTOM NAV */
 .bottom-nav{
 position:fixed;
 bottom:20px;
@@ -343,7 +224,7 @@ padding:18px 25px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-box-shadow:0 10px 35px rgba(0,0,0,0.12);
+box-shadow:0 10px 35px rgba(0,0,0,0.2);
 z-index:100;
 }
 
@@ -353,14 +234,6 @@ font-size:12px;
 color:#777;
 font-weight:500;
 cursor:pointer;
-text-decoration:none;
-border:none;
-background:none;
-transition:all .3s ease;
-}
-
-.nav-item:hover{
-transform:scale(1.05);
 }
 
 .nav-item div{
@@ -386,13 +259,188 @@ margin-top:-50px;
 border:6px solid #edf1f7;
 box-shadow:0 10px 25px rgba(0,168,107,.4);
 cursor:pointer;
-transition:all .3s ease;
-text-decoration:none;
+transition:.3s;
 }
 
 .center-btn:hover{
 transform:scale(1.1);
-box-shadow:0 15px 35px rgba(0,168,107,.6);
+}
+
+/* SLIDE-UP PANEL */
+.slide-panel{
+position:fixed;
+bottom:-100%;
+left:0;
+width:100%;
+max-width:420px;
+background:white;
+border-radius:30px 30px 0 0;
+padding:25px;
+box-shadow:0 -10px 30px rgba(0,0,0,0.2);
+transition:.45s ease;
+z-index:200;
+margin:auto;
+right:0;
+}
+
+.slide-panel.active{
+bottom:0;
+}
+
+.panel-title{
+font-size:20px;
+font-weight:600;
+margin-bottom:20px;
+}
+
+.input-box{
+margin-bottom:15px;
+}
+
+.input-box label{
+font-size:14px;
+font-weight:600;
+}
+
+.input-box input{
+width:100%;
+padding:14px;
+border-radius:14px;
+border:1px solid #ccc;
+margin-top:8px;
+font-size:15px;
+}
+
+.confirm-btn{
+width:100%;
+padding:15px;
+background:#00a86b;
+color:white;
+border:none;
+border-radius:16px;
+font-size:16px;
+font-weight:600;
+margin-top:20px;
+cursor:pointer;
+}
+
+.close-panel{
+font-size:18px;
+font-weight:600;
+color:#00a86b;
+cursor:pointer;
+margin-bottom:15px;
+}
+
+/* OVERLAY (PIN, LOADER, SUCCESS) */
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.45);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:300;
+opacity:0;
+pointer-events:none;
+transition:.3s;
+}
+
+.overlay.active{
+opacity:1;
+pointer-events:auto;
+}
+
+.modal{
+background:white;
+border-radius:20px;
+padding:20px 22px;
+width:85%;
+max-width:340px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.25);
+}
+
+.modal h3{
+margin-bottom:10px;
+}
+
+.modal p{
+font-size:13px;
+margin-bottom:15px;
+color:#555;
+}
+
+.pin-input{
+letter-spacing:8px;
+text-align:center;
+font-size:20px;
+padding:10px;
+border-radius:12px;
+border:1px solid #ccc;
+width:100%;
+margin-bottom:15px;
+}
+
+/* LOADER */
+.loader{
+border:4px solid #eee;
+border-top:4px solid #00a86b;
+border-radius:50%;
+width:40px;
+height:40px;
+animation:spin 0.8s linear infinite;
+margin:10px auto 15px;
+}
+
+@keyframes spin{
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
+}
+
+/* SUCCESS ANIMATION */
+.success-circle{
+width:70px;
+height:70px;
+border-radius:50%;
+border:4px solid #0abf53;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:10px auto 15px;
+animation:pop 0.4s ease-out;
+}
+
+.success-circle span{
+font-size:32px;
+color:#0abf53;
+}
+
+@keyframes pop{
+0%{transform:scale(0.5);opacity:0;}
+100%{transform:scale(1);opacity:1;}
+}
+
+/* RECEIPT */
+.receipt{
+text-align:left;
+font-size:13px;
+margin-top:10px;
+}
+
+.receipt-row{
+display:flex;
+justify-content:space-between;
+margin-bottom:6px;
+}
+.receipt-row span:first-child{
+color:#777;
+}
+.receipt-row span:last-child{
+font-weight:600;
 }
 </style>
 </head>
@@ -400,196 +448,531 @@ box-shadow:0 15px 35px rgba(0,168,107,.6);
 
 <div class="app">
 
+<!-- TOP BAR -->
 <div class="top-bar">
-<div class="welcome">
-<small>Welcome Back</small>
-<h1>Oluwatobi 👋</h1>
+  <div class="welcome">
+    <small>Welcome Back</small>
+    <h1>Oluwatobi 👋</h1>
+  </div>
+
+  <div class="top-icons">
+    <button class="icon-btn">🔍</button>
+    <button class="icon-btn">🔔</button>
+  </div>
 </div>
 
-<div class="top-icons">
-<button class="icon-btn" onclick="goToPage('search.html')">🔍</button>
-<button class="icon-btn" onclick="goToPage('notifications.html')">🔔</button>
-</div>
-</div>
-
+<!-- BALANCE CARD -->
 <div class="balance-card">
-<div class="balance-content">
-<div class="balance-title">Available Balance</div>
-<div class="balance-amount">$22,450,000.oo</div>
+  <div class="balance-title">Available Balance</div>
+  <div class="balance-amount" id="balanceDisplay">$0.00</div>
 
-<div class="balance-bottom">
-<div>
-<p>Account No</p>
-<strong>7033445854</strong>
-</div>
+  <div class="balance-bottom">
+    <div>
+      <p>Account No</p>
+      <strong>7033445854</strong>
+    </div>
 
-<div>
-<p>Status</p>
-<strong>Premium</strong>
-</div>
-</div>
-</div>
+    <div>
+      <p>Status</p>
+      <strong>Premium</strong>
+    </div>
+  </div>
 </div>
 
+<!-- QUICK ACTIONS -->
 <div class="quick-actions">
-<a href="transfer.html" class="action-box">
-<div class="action-icon">💸</div>
-<div class="action-title">Transfer</div>
-</a>
+  <div class="action-box" onclick="openPanel('transfer')">
+    <div class="action-icon">💸</div>
+    <div class="action-title">Transfer</div>
+  </div>
 
-<a href="bills.html" class="action-box">
-<div class="action-icon">📄</div>
-<div class="action-title">Bills</div>
-</a>
+  <div class="action-box" onclick="openPanel('bills')">
+    <div class="action-icon">📄</div>
+    <div class="action-title">Bills</div>
+  </div>
 
-<a href="airtime.html" class="action-box">
-<div class="action-icon">📱</div>
-<div class="action-title">Airtime</div>
-</a>
+  <div class="action-box" onclick="openPanel('airtime')">
+    <div class="action-icon">📱</div>
+    <div class="action-title">Airtime</div>
+  </div>
 
-<a href="data.html" class="action-box">
-<div class="action-icon">🌐</div>
-<div class="action-title">Data</div>
-</a>
-
-<a href="electricity.html" class="action-box">
-<div class="action-icon">⚡</div>
-<div class="action-title">Electricity</div>
-</a>
-
-<a href="cable-tv.html" class="action-box">
-<div class="action-icon">📺</div>
-<div class="action-title">Cable TV</div>
-</a>
-
-<a href="savings.html" class="action-box">
-<div class="action-icon">🏦</div>
-<div class="action-title">Savings</div>
-</a>
-
-<a href="cards.html" class="action-box">
-<div class="action-icon">💳</div>
-<div class="action-title">Cards</div>
-</a>
+  <div class="action-box" onclick="openPanel('data')">
+    <div class="action-icon">🌐</div>
+    <div class="action-title">Data</div>
+  </div>
 </div>
 
-<div class="cards-section">
-<div class="mini-card">
-<div class="mini-icon blue">🛡️</div>
-<h3>Virtual Card</h3>
-<p>Secure online shopping and subscriptions.</p>
-<button onclick="goToPage('manage-card.html')">Manage Card</button>
-</div>
-
-<div class="mini-card">
-<div class="mini-icon orange">📈</div>
-<h3>Quick Loan</h3>
-<p>Get instant loans directly into your account.</p>
-<button onclick="goToPage('apply-loan.html')">Apply Now</button>
-</div>
-</div>
-
+<!-- TRANSACTIONS -->
 <div class="transactions">
-<div class="trans-header">
-<h2>Transactions</h2>
-<a href="all-transactions.html">View All</a>
+  <div class="trans-header">
+    <h2>Transactions</h2>
+    <a onclick="scrollToTop()">View All</a>
+  </div>
+
+  <div id="transactionsList"></div>
 </div>
 
-<div class="trans-item">
-<div class="trans-left">
-<div class="trans-status success">✓</div>
-
-<div class="trans-info">
-<h4>Transfer to John Doe</h4>
-<p>Today • 10:45 AM</p>
-</div>
+<!-- SLIDE-UP PANEL -->
+<div id="panel" class="slide-panel">
+  <div class="close-panel" onclick="closePanel()">Close ✖</div>
+  <div id="panelContent"></div>
 </div>
 
-<div class="trans-amount">
-<h3>-₦45,000</h3>
-<span class="green">Successful</span>
-</div>
-</div>
-
-<div class="trans-item">
-<div class="trans-left">
-<div class="trans-status failed">✕</div>
-
-<div class="trans-info">
-<h4>Transfer to Sarah Tech</h4>
-<p>Today • 9:12 AM</p>
-</div>
+<!-- OVERLAY (PIN / LOADER / SUCCESS) -->
+<div id="overlay" class="overlay">
+  <div id="overlayContent" class="modal"></div>
 </div>
 
-<div class="trans-amount">
-<h3>-₦12,000</h3>
-<span class="red">Failed</span>
-</div>
-</div>
-
-<div class="trans-item">
-<div class="trans-left">
-<div class="trans-status success">✓</div>
-
-<div class="trans-info">
-<h4>Airtime Recharge</h4>
-<p>Yesterday • 6:40 PM</p>
-</div>
-</div>
-
-<div class="trans-amount">
-<h3>-₦2,000</h3>
-<span class="green">Successful</span>
-</div>
-</div>
-
-<div class="trans-item">
-<div class="trans-left">
-<div class="trans-status success">✓</div>
-
-<div class="trans-info">
-<h4>Salary Payment</h4>
-<p>Yesterday • 8:00 AM</p>
-</div>
-</div>
-
-<div class="trans-amount">
-<h3 class="green">+₦350,000</h3>
-<span class="green">Successful</span>
-</div>
-</div>
-</div>
-
+<!-- BOTTOM NAV -->
 <div class="bottom-nav">
-<a href="index.html" class="nav-item active-nav">
-<div>🏠</div>
-Home
-</a>
-
-<a href="analytics.html" class="nav-item">
-<div>📊</div>
-Analytics
-</a>
-
-<a href="create.html" class="center-btn">+</a>
-
-<a href="support.html" class="nav-item">
-<div>💬</div>
-Support
-</a>
-
-<a href="profile.html" class="nav-item">
-<div>👤</div>
-Profile
-</a>
+  <div class="nav-item active-nav"><div>🏠</div>Home</div>
+  <div class="nav-item"><div>📊</div>Analytics</div>
+  <div class="center-btn">+</div>
+  <div class="nav-item"><div>💬</div>Support</div>
+  <div class="nav-item"><div>👤</div>Profile</div>
 </div>
 
 </div>
 
 <script>
-function goToPage(page) {
-  window.location.href = page;
+let balance = 0;
+let transactions = [];
+const BALANCE_KEY = "bank_balance";
+const TRANS_KEY = "bank_transactions";
+const PIN_CODE = "1234"; // demo PIN
+
+function initApp(){
+  const savedBalance = localStorage.getItem(BALANCE_KEY);
+  const savedTrans = localStorage.getItem(TRANS_KEY);
+
+  if(savedBalance !== null){
+    balance = Number(savedBalance);
+  }else{
+    balance = 22450000; // default starting balance
+  }
+
+  if(savedTrans){
+    try{
+      transactions = JSON.parse(savedTrans);
+    }catch(e){
+      transactions = [];
+    }
+  }
+
+  // Seed some demo transactions if empty
+  if(transactions.length === 0){
+    transactions = [
+      {title:"Transfer to John Doe", time:"Today • 10:45 AM", amount:-45000, status:"success"},
+      {title:"Transfer to Sarah Tech", time:"Today • 9:12 AM", amount:-12000, status:"failed"},
+      {title:"Airtime Recharge", time:"Yesterday • 6:40 PM", amount:-2000, status:"success"},
+      {title:"Salary Payment", time:"Yesterday • 8:00 AM", amount:350000, status:"success"}
+    ];
+  }
+
+  updateBalanceDisplay();
+  renderTransactions();
 }
+
+function saveState(){
+  localStorage.setItem(BALANCE_KEY, balance.toString());
+  localStorage.setItem(TRANS_KEY, JSON.stringify(transactions));
+}
+
+function formatCurrencyNaira(amount){
+  const sign = amount < 0 ? "-" : "+";
+  const abs = Math.abs(amount);
+  return sign + "₦" + abs.toLocaleString();
+}
+
+function updateBalanceDisplay(){
+  document.getElementById("balanceDisplay").innerText =
+    "$" + balance.toLocaleString() + ".00";
+}
+
+function renderTransactions(){
+  const container = document.getElementById("transactionsList");
+  container.innerHTML = "";
+
+  transactions.slice().reverse().forEach(tx => {
+    const div = document.createElement("div");
+    div.className = "trans-item";
+
+    const statusClass = tx.status === "success" ? "success" : "failed";
+    const amountClass = tx.amount >= 0 ? "green" : (tx.status === "failed" ? "red" : "green");
+    const statusText = tx.status === "success" ? "Successful" : "Failed";
+
+    div.innerHTML = `
+      <div class="trans-left">
+        <div class="trans-status ${statusClass}">${tx.status === "success" ? "✓" : "✕"}</div>
+        <div class="trans-info">
+          <h4>${tx.title}</h4>
+          <p>${tx.time}</p>
+        </div>
+      </div>
+      <div class="trans-amount">
+        <h3 class="${amountClass}">${formatCurrencyNaira(tx.amount)}</h3>
+        <span class="${amountClass}">${statusText}</span>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function openPanel(type){
+  const panel = document.getElementById("panel");
+  const content = document.getElementById("panelContent");
+  let html = "";
+
+  if(type === "transfer"){
+    html = `
+      <div class="panel-title">Transfer Money</div>
+      <div class="input-box">
+        <label>Recipient Name</label>
+        <input type="text" id="transferName" placeholder="John Doe">
+      </div>
+      <div class="input-box">
+        <label>Recipient Account Number</label>
+        <input type="number" id="transferAccount" placeholder="Enter account number">
+      </div>
+      <div class="input-box">
+        <label>Amount (₦)</label>
+        <input type="number" id="transferAmount" placeholder="Enter amount">
+      </div>
+      <button class="confirm-btn" onclick="startTransfer()">Continue</button>
+    `;
+  }else if(type === "airtime"){
+    html = `
+      <div class="panel-title">Buy Airtime</div>
+      <div class="input-box">
+        <label>Phone Number</label>
+        <input type="number" id="airtimePhone" placeholder="Enter phone number">
+      </div>
+      <div class="input-box">
+        <label>Amount (₦)</label>
+        <input type="number" id="airtimeAmount" placeholder="Enter amount">
+      </div>
+      <button class="confirm-btn" onclick="startAirtime()">Buy Airtime</button>
+    `;
+  }else if(type === "bills"){
+    html = `
+      <div class="panel-title">Pay Bills</div>
+      <div class="input-box">
+        <label>Bill Type</label>
+        <input type="text" id="billType" placeholder="Electricity, Water, etc">
+      </div>
+      <div class="input-box">
+        <label>Amount (₦)</label>
+        <input type="number" id="billAmount" placeholder="Enter amount">
+      </div>
+      <button class="confirm-btn" onclick="startBill()">Pay Bill</button>
+    `;
+  }else if(type === "data"){
+    html = `
+      <div class="panel-title">Buy Data</div>
+      <div class="input-box">
+        <label>Network</label>
+        <input type="text" id="dataNetwork" placeholder="MTN, Airtel, Glo, 9mobile">
+      </div>
+      <div class="input-box">
+        <label>Data Plan</label>
+        <input type="text" id="dataPlan" placeholder="1GB, 2GB, etc">
+      </div>
+      <div class="input-box">
+        <label>Amount (₦)</label>
+        <input type="number" id="dataAmount" placeholder="Enter amount">
+      </div>
+      <button class="confirm-btn" onclick="startData()">Buy Data</button>
+    `;
+  }
+
+  content.innerHTML = html;
+  panel.classList.add("active");
+}
+
+function closePanel(){
+  document.getElementById("panel").classList.remove("active");
+}
+
+/* OVERLAY HELPERS */
+function showOverlay(html){
+  const overlay = document.getElementById("overlay");
+  const content = document.getElementById("overlayContent");
+  content.innerHTML = html;
+  overlay.classList.add("active");
+}
+
+function hideOverlay(){
+  document.getElementById("overlay").classList.remove("active");
+}
+
+/* TRANSFER FLOW */
+let pendingAction = null;
+let pendingPayload = null;
+
+function startTransfer(){
+  const name = document.getElementById("transferName").value.trim();
+  const account = document.getElementById("transferAccount").value.trim();
+  const amountVal = Number(document.getElementById("transferAmount").value);
+
+  if(!name || !account || !amountVal || amountVal <= 0){
+    alert("Please fill all fields with valid values.");
+    return;
+  }
+  if(amountVal > balance){
+    alert("Insufficient balance.");
+    return;
+  }
+
+  pendingAction = "transfer";
+  pendingPayload = {name, account, amount:amountVal};
+
+  showPinPopup();
+}
+
+function startAirtime(){
+  const phone = document.getElementById("airtimePhone").value.trim();
+  const amountVal = Number(document.getElementById("airtimeAmount").value);
+
+  if(!phone || !amountVal || amountVal <= 0){
+    alert("Please fill all fields with valid values.");
+    return;
+  }
+  if(amountVal > balance){
+    alert("Insufficient balance.");
+    return;
+  }
+
+  pendingAction = "airtime";
+  pendingPayload = {phone, amount:amountVal};
+
+  showPinPopup();
+}
+
+function startBill(){
+  const type = document.getElementById("billType").value.trim();
+  const amountVal = Number(document.getElementById("billAmount").value);
+
+  if(!type || !amountVal || amountVal <= 0){
+    alert("Please fill all fields with valid values.");
+    return;
+  }
+  if(amountVal > balance){
+    alert("Insufficient balance.");
+    return;
+  }
+
+  pendingAction = "bill";
+  pendingPayload = {type, amount:amountVal};
+
+  showPinPopup();
+}
+
+function startData(){
+  const network = document.getElementById("dataNetwork").value.trim();
+  const plan = document.getElementById("dataPlan").value.trim();
+  const amountVal = Number(document.getElementById("dataAmount").value);
+
+  if(!network || !plan || !amountVal || amountVal <= 0){
+    alert("Please fill all fields with valid values.");
+    return;
+  }
+  if(amountVal > balance){
+    alert("Insufficient balance.");
+    return;
+  }
+
+  pendingAction = "data";
+  pendingPayload = {network, plan, amount:amountVal};
+
+  showPinPopup();
+}
+
+/* PIN POPUP */
+function showPinPopup(){
+  const html = `
+    <h3>Enter PIN</h3>
+    <p>For security, confirm this transaction with your 4‑digit PIN.</p>
+    <input type="password" maxlength="4" class="pin-input" id="pinInput" placeholder="••••">
+    <button class="confirm-btn" onclick="confirmPin()">Confirm</button>
+  `;
+  showOverlay(html);
+  setTimeout(() => {
+    const el = document.getElementById("pinInput");
+    if(el) el.focus();
+  }, 100);
+}
+
+function confirmPin(){
+  const pin = document.getElementById("pinInput").value.trim();
+  if(pin !== PIN_CODE){
+    alert("Incorrect PIN");
+    return;
+  }
+  // correct PIN
+  showLoader();
+  setTimeout(processPendingAction, 1500);
+}
+
+/* LOADER */
+function showLoader(){
+  const html = `
+    <div class="loader"></div>
+    <h3>Processing...</h3>
+    <p>Please wait while we complete your transaction.</p>
+  `;
+  showOverlay(html);
+}
+
+/* SUCCESS + RECEIPT */
+function showSuccessWithReceipt(title, amount, extra){
+  const now = new Date();
+  const timeStr = now.toLocaleString();
+
+  const html = `
+    <div class="success-circle"><span>✓</span></div>
+    <h3>Transaction Successful</h3>
+    <p>${title}</p>
+    <div class="receipt">
+      <div class="receipt-row">
+        <span>Amount</span>
+        <span>${formatCurrencyNaira(-amount)}</span>
+      </div>
+      <div class="receipt-row">
+        <span>Date & Time</span>
+        <span>${timeStr}</span>
+      </div>
+      ${extra || ""}
+      <div class="receipt-row">
+        <span>Status</span>
+        <span class="green">Successful</span>
+      </div>
+    </div>
+    <button class="confirm-btn" onclick="closeReceipt()">Done</button>
+  `;
+  showOverlay(html);
+}
+
+function closeReceipt(){
+  hideOverlay();
+  closePanel();
+}
+
+/* PROCESS ACTION */
+function processPendingAction(){
+  if(!pendingAction || !pendingPayload){
+    hideOverlay();
+    return;
+  }
+
+  const now = new Date();
+  const timeStr = now.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
+  const dayStr = "Today • " + timeStr;
+
+  if(pendingAction === "transfer"){
+    const {name, account, amount} = pendingPayload;
+    balance -= amount;
+    transactions.push({
+      title:`Transfer to ${name}`,
+      time:dayStr,
+      amount:-amount,
+      status:"success"
+    });
+    saveState();
+    updateBalanceDisplay();
+    renderTransactions();
+
+    const extra = `
+      <div class="receipt-row">
+        <span>Recipient</span>
+        <span>${name}</span>
+      </div>
+      <div class="receipt-row">
+        <span>Account</span>
+        <span>${account}</span>
+      </div>
+    `;
+    showSuccessWithReceipt(`You sent money to ${name}`, amount, extra);
+  }
+
+  if(pendingAction === "airtime"){
+    const {phone, amount} = pendingPayload;
+    balance -= amount;
+    transactions.push({
+      title:`Airtime to ${phone}`,
+      time:dayStr,
+      amount:-amount,
+      status:"success"
+    });
+    saveState();
+    updateBalanceDisplay();
+    renderTransactions();
+
+    const extra = `
+      <div class="receipt-row">
+        <span>Phone</span>
+        <span>${phone}</span>
+      </div>
+    `;
+    showSuccessWithReceipt(`Airtime purchase for ${phone}`, amount, extra);
+  }
+
+  if(pendingAction === "bill"){
+    const {type, amount} = pendingPayload;
+    balance -= amount;
+    transactions.push({
+      title:`Bill Payment - ${type}`,
+      time:dayStr,
+      amount:-amount,
+      status:"success"
+    });
+    saveState();
+    updateBalanceDisplay();
+    renderTransactions();
+
+    const extra = `
+      <div class="receipt-row">
+        <span>Bill Type</span>
+        <span>${type}</span>
+      </div>
+    `;
+    showSuccessWithReceipt(`Bill payment for ${type}`, amount, extra);
+  }
+
+  if(pendingAction === "data"){
+    const {network, plan, amount} = pendingPayload;
+    balance -= amount;
+    transactions.push({
+      title:`Data - ${network} (${plan})`,
+      time:dayStr,
+      amount:-amount,
+      status:"success"
+    });
+    saveState();
+    updateBalanceDisplay();
+    renderTransactions();
+
+    const extra = `
+      <div class="receipt-row">
+        <span>Network</span>
+        <span>${network}</span>
+      </div>
+      <div class="receipt-row">
+        <span>Plan</span>
+        <span>${plan}</span>
+      </div>
+    `;
+    showSuccessWithReceipt(`Data purchase on ${network}`, amount, extra);
+  }
+
+  pendingAction = null;
+  pendingPayload = null;
+}
+
+function scrollToTop(){
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+window.onload = initApp;
 </script>
 
 </body>
