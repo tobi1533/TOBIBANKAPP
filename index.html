@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -287,7 +288,7 @@ body{
   margin:auto;
   right:0;
 
-  /* SCROLL FIX */
+  /* scroll fix */
   max-height:80vh;
   overflow-y:auto;
 }
@@ -499,7 +500,7 @@ body{
   <div class="top-bar">
     <div class="welcome">
       <small>Welcome Back</small>
-      <h1>NICHOLAS 👋</h1>
+      <h1>Oluwatobi 👋</h1>
     </div>
 
     <div class="top-icons">
@@ -546,6 +547,12 @@ body{
     <div class="action-box" onclick="openPanel('data')">
       <div class="action-icon">🌐</div>
       <div class="action-title">Data</div>
+    </div>
+
+    <!-- NEW RECEIVE / ADD FUNDS -->
+    <div class="action-box" onclick="openPanel('receive')">
+      <div class="action-icon">📥</div>
+      <div class="action-title">Receive</div>
     </div>
   </div>
 
@@ -785,6 +792,27 @@ function openPanel(type){
       </div>
       <button class="confirm-btn" onclick="startData()">Buy Data</button>
     `;
+  }else if(type === "receive"){
+    html = `
+      <div class="panel-title">Receive Money</div>
+      <div class="input-box">
+        <label>Sender Name</label>
+        <input type="text" id="receiveSender" placeholder="Michael Ade">
+      </div>
+      <div class="input-box">
+        <label>Sender Account Number</label>
+        <input type="text" id="receiveAccount" placeholder="Enter sender account">
+      </div>
+      <div class="input-box">
+        <label>Amount (${selectedCurrency.symbol})</label>
+        <input type="number" id="receiveAmount" placeholder="Enter amount">
+      </div>
+      <div class="input-box">
+        <label>Description (optional)</label>
+        <input type="text" id="receiveDesc" placeholder="Salary, refund, gift, etc">
+      </div>
+      <button class="confirm-btn" onclick="startReceive()">Add Funds</button>
+    `;
   }else if(type === "currency"){
     html = `
       <div class="panel-title">Currency Settings</div>
@@ -927,6 +955,24 @@ function startData(){
   showPinPopup();
 }
 
+function startReceive(){
+  const sender = document.getElementById("receiveSender").value.trim();
+  const account = document.getElementById("receiveAccount").value.trim();
+  const amountVal = Number(document.getElementById("receiveAmount").value);
+  const desc = document.getElementById("receiveDesc").value.trim();
+
+  if(!sender || !account || !amountVal || amountVal <= 0){
+    alert("Please fill all fields with valid values.");
+    return;
+  }
+
+  const amountNGN = amountVal / (ratesFromNGN[selectedCurrency.code] || 1);
+
+  pendingAction = "receive";
+  pendingPayload = {sender, account, amountNGN, desc};
+  showPinPopup();
+}
+
 /* ====== PIN POPUP ====== */
 function showPinPopup(){
   const html = `
@@ -962,6 +1008,14 @@ function showLoader(){
   showOverlay(html);
 }
 
+/* ====== UUID GENERATOR ====== */
+function generateUUID(){
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c){
+    const r = Math.random()*16|0, v = c === 'x' ? r : (r&0x3|0x8);
+    return v.toString(16);
+  });
+}
+
 /* ====== SUCCESS + RECEIPT ====== */
 function showSuccessWithReceipt(title, amountNGN, extra){
   const now = new Date();
@@ -974,7 +1028,7 @@ function showSuccessWithReceipt(title, amountNGN, extra){
     <div class="receipt">
       <div class="receipt-row">
         <span>Amount</span>
-        <span>${formatAmount(-amountNGN)}</span>
+        <span>${formatAmount(amountNGN < 0 ? -amountNGN : amountNGN)}</span>
       </div>
       <div class="receipt-row">
         <span>Date & Time</span>
@@ -1030,7 +1084,7 @@ function processPendingAction(){
         <span>${account}</span>
       </div>
     `;
-    showSuccessWithReceipt(`You sent money to ${name}`, amountNGN, extra);
+    showSuccessWithReceipt(`You sent money to ${name}`, -amountNGN, extra);
   }
 
   if(pendingAction === "airtime"){
@@ -1052,7 +1106,7 @@ function processPendingAction(){
         <span>${phone}</span>
       </div>
     `;
-    showSuccessWithReceipt(`Airtime purchase for ${phone}`, amountNGN, extra);
+    showSuccessWithReceipt(`Airtime purchase for ${phone}`, -amountNGN, extra);
   }
 
   if(pendingAction === "bill"){
@@ -1074,7 +1128,7 @@ function processPendingAction(){
         <span>${type}</span>
       </div>
     `;
-    showSuccessWithReceipt(`Bill payment for ${type}`, amountNGN, extra);
+    showSuccessWithReceipt(`Bill payment for ${type}`, -amountNGN, extra);
   }
 
   if(pendingAction === "data"){
@@ -1100,7 +1154,49 @@ function processPendingAction(){
         <span>${plan}</span>
       </div>
     `;
-    showSuccessWithReceipt(`Data purchase on ${network}`, amountNGN, extra);
+    showSuccessWithReceipt(`Data purchase on ${network}`, -amountNGN, extra);
+  }
+
+  if(pendingAction === "receive"){
+    const {sender, account, amountNGN, desc} = pendingPayload;
+    baseBalanceNGN += amountNGN;
+    const txnId = generateUUID();
+    const refNo = generateUUID();
+
+    transactions.push({
+      title:`Received from ${sender}`,
+      time:dayStr,
+      amountNGN:amountNGN,
+      status:"success"
+    });
+    saveState();
+    updateBalanceDisplay();
+    renderTransactions();
+
+    const extra = `
+      <div class="receipt-row">
+        <span>Sender</span>
+        <span>${sender}</span>
+      </div>
+      <div class="receipt-row">
+        <span>Sender Account</span>
+        <span>${account}</span>
+      </div>
+      ${desc ? `
+      <div class="receipt-row">
+        <span>Description</span>
+        <span>${desc}</span>
+      </div>` : ""}
+      <div class="receipt-row">
+        <span>Transaction ID</span>
+        <span>${txnId}</span>
+      </div>
+      <div class="receipt-row">
+        <span>Reference No</span>
+        <span>${refNo}</span>
+      </div>
+    `;
+    showSuccessWithReceipt(`Received from ${sender}`, amountNGN, extra);
   }
 
   pendingAction = null;
